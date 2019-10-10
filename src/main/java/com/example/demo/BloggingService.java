@@ -38,11 +38,11 @@ public class BloggingService {
         }).orElseThrow(RuntimeException::new);
     }
 
-    public Iterable<Blogpost> getAllBlogpostsWithComments() {
+    Iterable<Blogpost> getAllBlogpostsWithComments() {
         return blogpostRepository.findAllWithComments();
     }
 
-    public Iterable<Blogpost> getAllBlogposts() {
+    Iterable<Blogpost> getAllBlogpostsWithoutComments() {
         return blogpostRepository.findAll();
     }
 }
