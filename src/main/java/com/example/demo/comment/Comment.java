@@ -1,10 +1,16 @@
 package com.example.demo.comment;
 
 import com.example.demo.blogpost.Blogpost;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
+@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@Setter(value = AccessLevel.PACKAGE)
+@Getter
+@Builder
 public class Comment {
 
     @Id
@@ -18,35 +24,4 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "BLOGPOST_ID")
     private Blogpost blogpost;
-
-    public Comment() {
-    }
-
-    public Comment(String text) {
-        this.text = text;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Blogpost getBlogpost() {
-        return blogpost;
-    }
-
-    public void setBlogpost(Blogpost blogpost) {
-        this.blogpost = blogpost;
-    }
 }

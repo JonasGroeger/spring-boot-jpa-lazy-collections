@@ -21,25 +21,25 @@ public class BloggingService {
 
     @Transactional
     public Blogpost newPost() {
-        Blogpost blogpost = new Blogpost();
+        Blogpost blogpost = Blogpost.builder()
+                .build();
         return blogpostRepository.save(blogpost);
     }
 
     @Transactional
     public Blogpost addComment(Long blogpostId, String text) {
-        Blogpost blogpost = blogpostRepository.findById(blogpostId).get();
-
-        Comment comment = new Comment();
-        comment.setText(text);
-        comment.setBlogpost(blogpost);
-        commentRepository.save(comment);
-
-        return blogpost;
+        return blogpostRepository.findById(blogpostId).map(blogpost -> {
+            Comment comment = Comment.builder()
+                    .text(text)
+                    .blogpost(blogpost)
+                    .build();
+            commentRepository.save(comment);
+            return blogpost;
+        }).orElseThrow(RuntimeException::new);
     }
 
     public Iterable<Blogpost> getAllBlogpostsWithComments() {
         return blogpostRepository.findAllWithComments();
-
     }
 
     public Iterable<Blogpost> getAllBlogposts() {
