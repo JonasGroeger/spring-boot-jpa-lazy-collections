@@ -36,10 +36,8 @@ public class DemoApplication {
                 System.out.println("Blogpost: " + bp);
                 System.out.println("#Comments: " + bp.getComments());
             } catch (LazyInitializationException lie) {
-                System.out.println("\n".repeat(5));
-                System.out.println("LazyInitializationException!");
+                System.out.println("Caught a LazyInitializationException since comments are lazily initialized.");
                 System.out.println(lie.getMessage());
-                System.out.println("\n".repeat(5));
             }
         };
 
