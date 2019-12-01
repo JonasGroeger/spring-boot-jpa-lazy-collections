@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "Blogpost")
-@NamedEntityGraph(name = Blogpost.COMMENTS_GRAPH, attributeNodes = @NamedAttributeNode("comments"))
+@NamedEntityGraph(name = Blogpost.GRAPH_WITH_COMMENTS, attributeNodes = @NamedAttributeNode("comments"))
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Setter(value = AccessLevel.PACKAGE)
@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 public class Blogpost {
 
-    public static final String COMMENTS_GRAPH = "Blogpost.comments";
+    public static final String GRAPH_WITH_COMMENTS = "Blogpost.comments";
 
     @Id
     @GeneratedValue

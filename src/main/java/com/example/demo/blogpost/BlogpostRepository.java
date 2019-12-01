@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BlogpostRepository extends CrudRepository<Blogpost, Long> {
 
     @Query("SELECT b FROM Blogpost b")
-    @EntityGraph(Blogpost.COMMENTS_GRAPH)
+    @EntityGraph(Blogpost.GRAPH_WITH_COMMENTS)
     Iterable<Blogpost> findAllWithComments();
 }
